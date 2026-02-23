@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,0.06);
+      --text: #eaf0ff;
+      --muted: rgba(234,240,255,0.72);
+      --accent: #7c5cff;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 16px;
+      --max: 980px;
+    }
+
+    *{ box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 10%, rgba(124,92,255,0.28), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(0,255,198,0.10), transparent 60%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .container{
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    header{
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: center;
+      padding: 26px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      width: fit-content;
+      font-size: 14px;
+    }
+
+    h1{
+      margin: 12px 0 8px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    nav{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .navlink{
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .navlink:hover{
+      color: var(--text);
+      border-color: rgba(124,92,255,0.6);
+      text-decoration: none;
+    }
+
+    main{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    section{
+      padding: 22px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    section h2{
+      margin: 0 0 12px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .grid-2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .info-card{
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.04);
+    }
+    .label{
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .value{
+      font-weight: 600;
+    }
+
+    .pill-list{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .projects{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .project{
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+    }
+    .project h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .project p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(124,92,255,0.45);
+      background: rgba(124,92,255,0.12);
+      color: var(--text);
+    }
+
+    .contact{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .accent{
+      color: var(--text);
+      background: linear-gradient(90deg, rgba(124,92,255,1), rgba(0,255,198,0.9));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      header{ grid-template-columns: 1fr; }
+      nav{ justify-content: flex-start; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .projects{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div>
+        <div class="badge">👋 Hi! Welcome to My Portfolio</div>
+        <h1><span class="accent">John Dave Maru</span></h1>
+        <p class="subtitle">
+          I’m a student developer who enjoys building simple, useful projects and improving my skills step-by-step.
+        </p>
+      </div>
+
+      <nav aria-label="Page navigation">
+        <a class="navlink" href="#personal">👤 Personal Info</a>
+        <a class="navlink" href="#objective">🎯 Objective</a>
+        <a class="navlink" href="#skills">🛠 Skills</a>
+        <a class="navlink" href="#projects">📂 Projects</a>
+        <a class="navlink" href="#contact">📞 Contact</a>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- PERSONAL INFORMATION -->
+      <section id="personal">
+        <h2>👤 Personal Information</h2>
+        <div class="grid-2">
+          <div class="info-card">
+            <div class="label">Name</div>
+            <div class="value">John Dave Maru</div>
+          </div>
+          <div class="info-card">
+            <div class="label">Course</div>
+            <div class="value">BS Information Technology</div>
+          </div>
+          <div class="info-card">
+            <div class="label">Year Level</div>
+            <div class="value">3nd Year</div>
+          </div>
+          <div class="info-card">
+            <div class="label">School</div>
+            <div class="value">Madridejos Community College</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAREER OBJECTIVE -->
+      <section id="objective">
+        <h2>🎯 Career Objective</h2>
+        <p style="color: var(--muted); margin: 0;">
+          To secure an entry-level role or internship where I can apply my skills in web development,
+          learn from experienced developers, and contribute to real-world projects while continuously improving
+          my technical and teamwork abilities.
+        </p>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h2>🛠 Skills</h2>
+        <ul class="pill-list">
+          <li class="pill">HTML</li>
+          <li class="pill">CSS</li>
+          <li class="pill">JavaScript (Basic)</li>
+          <li class="pill">Responsive Design</li>
+          <li class="pill">Git / GitHub</li>
+          <li class="pill">Problem Solving</li>
+          <li class="pill">Communication</li>
+          <li class="pill">Teamwork</li>
+        </ul>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <h2>📂 Projects</h2>
+
+        <div class="projects">
+          <article class="project">
+            <h3>1) Simple Portfolio Website</h3>
+            <p>
+              A clean personal portfolio website using HTML and CSS to showcase my info, skills, and projects.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Responsive</span>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>2) Student Helper Website</h3>
+            <p>
+              A basic website that helps students navigate guides/resources with easy-to-follow sections.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">UI</span>
+            </div>
+          </article>
+        </div>
+
+        <p style="margin: 12px 0 0; color: var(--muted); font-size: 14px;">
+          No projects yet? You can write: “Currently building my first projects and improving my portfolio.”
+        </p>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2>📞 Contact Information</h2>
+        <div class="contact">
+          <div class="info-card">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:youremail@example.com">marujohndave05@Gmail.com</a></div>
+          </div>
+          <div class="info-card">
+            <div class="label">Phone</div>
+            <div class="value">+63 969 316 2208</div>
+          </div>
+          <div class="info-card">
+            <div class="label">GitHub</div>
+            <div class="value"><a href="#" target="_blank" rel="noopener">github.com/Dave-alt-tech</a></div>
+          </div>
+          <div class="info-card">
+            <div class="label">Facebook / LinkedIn</div>
+            <div class="value"><a href="#" target="_blank" rel="noopener">https://www.facebook.com/dave.maruii?mibextid=wwXIfr&mibextid=wwXIfr</a></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> John Dave Maru • Built with HTML & CSS
+    </footer>
+  </div>
+
+  <script>
+    // Auto-updates the footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
